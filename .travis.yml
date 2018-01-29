@@ -1,0 +1,23 @@
+sudo: false
+language: node_js
+node_js:
+- 'v7.10.1'
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+notifications:
+  email: false
+before_script:
+- npm prune
+script:
+- npm run build
+after_success:
+- bash ./scripts/deploy.sh
+env:
+  global:
+  - GH_USER: gggary9424
+  - GH_REPO: sticker
+  - GH_TOKEN: $GITHUB_TOKEN
