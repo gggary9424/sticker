@@ -20,4 +20,3 @@ env:
   global:
   - GH_USER: gggary9424
   - GH_REPO: sticker
-  - GH_TOKEN: $GITHUB_TOKEN
