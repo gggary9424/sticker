@@ -18,12 +18,14 @@ export default {
       return new Promise((resolve, reject) => {
           console.log('getting fb')
           return MessengerExtensions
-            .getContext($scope.fbAppId, (data) => {
-              console.log(data)
-              return resolve(data)
-            }, (error) => {
-              console.error(error)
-              return reject(error)
+            .getContext(process.env.FB_APP_ID, (context) => {
+              console.log(context)
+
+              return resolve(context)
+            }, (errorCode, errorMessage) => {
+              console.error(errorCode, errorMessage)
+
+              return reject({errorCode, errorMessage})
             })
         })
         .then((context) => {

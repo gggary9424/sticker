@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div> {{ text }} </div>
     <button @click="sendSticker"> Send </button>
   </div>
 </template>
@@ -8,45 +9,33 @@
 export default {
   name: 'home_page',
   data () {
-    return {}
+    return {
+      text: 'Click it, bitch !',
+    }
   },
   methods: {
     sendSticker() {
       const message = {
         attachment:{
-          type: 'template',
+          type: 'image',
           payload: {
-            template_type: 'generic',
-            elements: [{
-              title: "I took Peter's 'Which Hat Are You?' Quiz",
-              image_url: 'https://bot.peters-hats.com/img/hats/fez.jpg',
-              subtitle: 'My result: Fez',
-              default_action: {
-                type: 'web_url',
-                url: 'https://bot.peters-hats.com/view_quiz_results.php?user=24601'
-              },
-              buttons:[{
-                type: 'web_url',
-                url: 'https://bot.peters-hats.com/hatquiz.php?referer=24601',
-                title: 'Take the Quiz'
-              }]
-            }]
-          }
-        }
-      };
+            attachment_id: '1932667040097771',
+          },
+        },
+      }
 
       MessengerExtensions.beginShareFlow((share_response) => {
-          // User dismissed without error, but did they share the message?
           if(share_response.is_sent){
-            // The user actually did share. 
-            // Perhaps close the window w/ requestCloseBrowser().
+            this.text = 'Job job, bitch ~~~~'
+          } else {
+            this.text = 'You are absoulate bitch!'
           }
         }, 
-        function(errorCode, errorMessage) {      
-        // An error occurred in the process
+        (errorCode, errorMessage) => {      
+          console.error(errorCode, errorMessage)
         },
         message,
-        "broadcast"
+        'current_thread',
       )
     }
   },
