@@ -16,10 +16,10 @@ export default {
   methods: {
     sendSticker() {
       const message = {
-        attachment:{
+        attachment: {
           type: 'image',
           payload: {
-            attachment_id: '1932667040097771',
+            url: 'http://s2.buzzhand.net/uploads/88/5/557156/14252976575990.jpg',
           },
         },
       }
