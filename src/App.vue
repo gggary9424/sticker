@@ -1,18 +1,36 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
+    <Home/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Home from './components/Home'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Home,
+  },
+  beforeCreate() {
+    window.extAsyncInit = () => {
+      return new Promise((resolve, reject) => {
+          console.log('getting fb')
+          return MessengerExtensions
+            .getContext($scope.fbAppId, (data) => {
+              console.log(data)
+              return resolve(data)
+            }, (error) => {
+              console.error(error)
+              return reject(error)
+            })
+        })
+        .then((context) => {
+          
+        })
+    }
+  },
 }
 </script>
 
