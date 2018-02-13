@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
+import axios from 'axios'
 import _ from 'lodash'
+import { Carousel, Slide } from 'vue-carousel'
 
 export default {
   name: 'home_page',
@@ -72,6 +73,19 @@ export default {
 
       return chunks
     },
+  },
+  beforeCreate() {
+    return axios.get('https://sticker-bot-forward.herokuapp.com/v1/uploaded-images', {
+        params: {
+          psid: '1258684950903865',
+        },
+      })
+      .then((response) => {
+        this.images = response.data.urls
+      })
+      .catch(() => {
+
+      })
   },
   methods: {
     sendSticker(imageUrl) {
