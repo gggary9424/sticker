@@ -15,19 +15,13 @@
 </template>
 
 <script>
-import axios from 'axios'
 import _ from 'lodash'
-import { Carousel, Slide } from 'vue-carousel'
+import request from '@/utils/request'
 
 export default {
   name: 'home_page',
-  components: [
-    Carousel,
-    Slide,
-  ],
   data() {
     return {
-      text: 'Click it, bitch !',
       columnNum: 2,
       images: [
         'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68dd54ca-60cf-4ef7-898b-26d7cbe48ec7/10-dithering-opt.jpg',
@@ -75,7 +69,7 @@ export default {
     },
   },
   beforeCreate() {
-    return axios.get('https://sticker-bot-forward.herokuapp.com/v1/uploaded-images', {
+    return request.get('/v1/uploaded-images', {
         params: {
           psid: '1258684950903865',
         },
