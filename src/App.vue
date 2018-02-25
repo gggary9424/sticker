@@ -14,7 +14,9 @@ export default {
     Home,
   },
   beforeCreate() {
-    window.extAsyncInit = () => {
+    window.extAsyncInit = function() {
+      console.log('process.env.FB_APP_ID', process.env.FB_APP_ID)
+
       return new Promise((resolve, reject) => {
           return MessengerExtensions
             .getContext(process.env.FB_APP_ID, (context) => {
