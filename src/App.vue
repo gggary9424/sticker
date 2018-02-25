@@ -6,6 +6,7 @@
 
 <script>
 import Home from './components/Home'
+import request from '@/utils/request'
 
 export default {
   name: 'App',
@@ -15,11 +16,8 @@ export default {
   beforeCreate() {
     window.extAsyncInit = () => {
       return new Promise((resolve, reject) => {
-          console.log('getting fb')
           return MessengerExtensions
             .getContext(process.env.FB_APP_ID, (context) => {
-              console.log(context)
-
               return resolve(context)
             }, (errorCode, errorMessage) => {
               console.error(errorCode, errorMessage)
@@ -28,8 +26,11 @@ export default {
             })
         })
         .then((context) => {
-          
+          console.log(context)
+
+          return request.post('/v1/login', context)
         })
+        .then(console.log)
     }
   },
 }
