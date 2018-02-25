@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Logger from '@/utils/logger'
+import store from '@/store'
 
 const service = axios.create({
   baseURL: process.env.BASE_API,
@@ -7,11 +8,10 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  /*
-  if (store.getters.token) {
-    config.headers['X-Token'] = getToken()
+  if (store.state.user.token) {
+    config.headers['Bearer'] = store.state.user.token
   }
-  */
+
   return config
 }, err => {
   Logger.log(err)

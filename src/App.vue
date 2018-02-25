@@ -14,9 +14,16 @@ export default {
     Home,
   },
   beforeCreate() {
+    // for test
+    // return request.post('/v1/login', {})
+    //   .then((response) => {
+    //     if (response.data.token) {
+    //       this.$store.commit('setUserInfo', response.data.token)
+    //     } else {
+    //       this.$store.commit('setUserInfo', '')
+    //     }
+    //   })
     window.extAsyncInit = function() {
-      console.log('process.env.FB_APP_ID', process.env.FB_APP_ID)
-
       return new Promise((resolve, reject) => {
           return MessengerExtensions
             .getContext(process.env.FB_APP_ID, (context) => {
@@ -32,7 +39,13 @@ export default {
 
           return request.post('/v1/login', context)
         })
-        .then(console.log)
+        .then((response) => {
+          if (response.data.token) {
+            this.$store.commit('setUserInfo', response.data.token)
+          } else {
+            this.$store.commit('setUserInfo', '')
+          }
+        })
     }
   },
 }
