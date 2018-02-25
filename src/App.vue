@@ -39,7 +39,7 @@ export default {
 
           return request.post('/v1/login', context)
         })
-        .then((response) => {
+        .then(function (response) {
           if (response.data.token) {
             this.$store.commit('setUserInfo', response.data.token)
           } else {
