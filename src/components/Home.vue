@@ -26,7 +26,7 @@ export default {
   name: 'home_page',
   data() {
     return {
-      columnNum: 2,
+      columnNum: 4,
       images: [],
       colors: ['red', 'black', 'green', 'yellow', 'pupple'],
     }
