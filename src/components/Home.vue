@@ -14,6 +14,13 @@
         />
       </div>
     </div>
+    <div class="fb-send-to-messenger"
+      messenger_app_id="1477124502376307"
+      page_id="1595914287106383"
+      data-ref="TEST"
+      color="white"
+      size="standard"
+    ></div>
   </div> 
 </template>
 
