@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a href="https://m.me/1595914287106383?ref=TEST" />
     <div v-if="!$store.state.user.hasLogined">
       Please wait ...
     </div>
