@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="https://m.me/1595914287106383?ref=TEST">
+    <a href="https://m.me/1595914287106383?ref=GET_STARTED">
       Test M.me
     </a>
     <div v-if="!$store.state.user.hasLogined">
